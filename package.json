@@ -1,0 +1,15 @@
+{
+  "name": "halfbin",
+  "version": "0.0.0",
+  "description": "Half(backend) of a bin website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.8.7",
+    "mongoose": "^3.8.15"
+  }
+}
