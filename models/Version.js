@@ -10,4 +10,4 @@ var VersionSchema = new Schema({
   version: Number
 });
 
-module.exports = mongoose.Model('Version', VersionSchema);
+mongoose.Model('Version', VersionSchema);

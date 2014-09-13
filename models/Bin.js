@@ -4,14 +4,12 @@ var shortId = require('shortid');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-shortId.characters('abcdefghijklmnopqrstuvwxyz');
-
-var binSchema = new Schema({
+var BinSchema = new Schema({
   _id: {
     type: String,
     unique: true,
     'default': shortId.generate
-  },
+  }//,
   // versions: {
   //   type: Array,
   //   default: [],
@@ -21,4 +19,4 @@ var binSchema = new Schema({
   // }
 });
 
-mongoose.Model('Bin', binSchema);
+mongoose.model('Bin', BinSchema, {});
