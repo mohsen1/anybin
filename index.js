@@ -4,7 +4,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var app = express();
 var Bin = require('./models/Bin');
-var environment = NODE_ENV || 'development';
+var environment = process.env.NODE_ENV || 'development';
 var config = require('./config')[environment];
 
 
@@ -22,7 +22,7 @@ app.get('/', function (req, res, next) {
 });
 
 app.post('/', function (req, res, next) {
-  var bin = new Bin;
+  var bin = new Bin();
   bin.save();
   res.send(bin);
 });

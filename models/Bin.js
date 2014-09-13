@@ -1,11 +1,24 @@
 'use strict';
 
+var shortId = require('shortid');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var BinSchema = new Schema({
-  uuid: String,
-  versions: [ 'Version' ]
+shortId.characters('abcdefghijklmnopqrstuvwxyz');
+
+var binSchema = new Schema({
+  _id: {
+    type: String,
+    unique: true,
+    'default': shortId.generate
+  },
+  // versions: {
+  //   type: Array,
+  //   default: [],
+  //   items: {
+  //     type: 'Version'
+  //   }
+  // }
 });
 
-module.exports = mongoose.Model('Bin', BinSchema);
+mongoose.Model('Bin', binSchema);
