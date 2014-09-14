@@ -10,6 +10,10 @@ var BinSchema = new Schema({
     unique: true,
     default: shortId.generate
   },
+  secret: {
+    type: String,
+    default: randomStr
+  },
   versions: [{
     body: {
       type: String,
@@ -38,7 +42,9 @@ BinSchema.methods = {
   },
 
   getLatest: function(){
-    return this.versions[this.versions.length - 1];
+    if (this.versions){
+      return this.versions[this.versions.length - 1];
+    }
   }
 }
 
@@ -48,8 +54,24 @@ BinSchema.statics = {
     var bin = new this();
     bin.addVersion(body);
     bin.save(function (err){
-      cb(err, bin);
+      cb(err, bin.toObject());
     });
   }
 };
+
+if (!BinSchema.options.toObject) BinSchema.options.toObject = {};
+BinSchema.options.toObject.transform = function (doc, ret, options) {
+  delete ret.__v;
+  if (ret.versions && ret.versions.length) {
+    ret.versions.forEach(function (ver) {
+      delete ver._id;
+    });
+  }
+};
+
 mongoose.model('Bin', BinSchema);
+
+
+function randomStr(){
+  return (Date.now() * Math.random()).toString(36).replace('.', '');
+}
