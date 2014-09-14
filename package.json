@@ -4,7 +4,7 @@
   "description": "Half(backend) of a bin website",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "./scripts/test.sh",
     "server": "node app/server",
     "dev": "node-inspector && nodemon --debug app/server"
   },
@@ -15,5 +15,9 @@
     "express": "^4.8.7",
     "mongoose": "^3.8.15",
     "shortid": "^2.0.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "request": "^2.42.0"
   }
 }
