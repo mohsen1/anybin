@@ -2,11 +2,11 @@ var main = require('./controllers/main');
 
 module.exports = function (app) {
 
-  app.get('/', main.index);
-  app.post('/', main.create);
-  app.get('/:id', main.latest);
-  app.put('/:id', main.update);
-  app.post('/:id', updateVersion);
-  app.get(':/id/:version', main.getVersion);
+  app.get('/', main.index); // List all bins
+  app.post('/', main.create); // Make a new Bin
+  app.get('/:id', main.latest); // Get latest version
+  app.put('/:id', main.update); // Update latest version of a bin
+  app.post('/:id', main.updateVersion); // Add a new version to a bin
+  app.get(':/id/:version', main.getVersion); // Get a specific version of a bin
 
 };

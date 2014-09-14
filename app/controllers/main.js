@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var Bin = mongoose.model('Bin');
 
 exports.index = function (req, res, next) {
