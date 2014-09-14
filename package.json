@@ -4,7 +4,9 @@
   "description": "Half(backend) of a bin website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "server": "node app/server",
+    "dev": "node-inspector && nodemon --debug app/server"
   },
   "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
   "license": "MIT",
