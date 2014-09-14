@@ -1,5 +1,9 @@
 # HalfBin
-![](https://api.travis-ci.org/mohsen1/halfbin.svg)
+
+<a href="https://travis-ci.org/mohsen1/halfbin">
+  <img src="https://api.travis-ci.org/mohsen1/halfbin.svg">
+</a>
+
 Backend API of a bin website.
 
 **Work in progress**
