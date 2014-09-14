@@ -1,3 +1,3 @@
-NODE_ENV=test nohup node app/server 2>&1 &
+NODE_ENV=test node app/server &
 sleep 1s
 mocha

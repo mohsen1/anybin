@@ -67,7 +67,7 @@ BinSchema.statics = {
 
   findById: function (id, cb) {
     this.findOne({_id: id}, function (err, bin) {
-      if (err) { cb(err); }
+      if (err) { return cb(err); }
       cb(err, bin.toObject());
     });
   }
