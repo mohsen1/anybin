@@ -6,7 +6,7 @@ Backend API of a bin website.
 ## Running locally
 
 ```
-git clone ...
+git clone git@github.com:mohsen1/halfbin.git
 cd halfbin
 npm install
 npm run dev
@@ -16,12 +16,12 @@ npm run dev
 
 |Operation|Path         |Description                     |
 |---------|-------------|--------------------------------|
-|get      |/            |List all bins                   |
-|post     |/            |Make a new Bin                  |
-|get      |/:id         |Get latest version              |
-|put      |/:id         |Update latest version of a bin  |
-|post     |/:id         |Add a new version to a bin      |
-|get      |:/id/:version|Get a specific version of a bin |
+|GET      |/            |List all bins                   |
+|POST     |/            |Make a new Bin                  |
+|GET      |/:id         |Get latest version of a bin     |
+|PUT      |/:id         |Update latest version of a bin  |
+|POST     |/:id         |Add a new version to a bin      |
+|GET      |:/id/:version|Get a specific version of a bin |
 
 
 ## License
