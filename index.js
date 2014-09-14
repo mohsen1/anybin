@@ -34,6 +34,13 @@ app.post('/', function (req, res, next) {
   });
 });
 
+app.get('/:id', function (req, res, next) {
+  Bin.findById(req.params.id, function (err, bin) {
+    if (!err) { res.send(bin); }
+    next();
+  });
+});
+
 
 app.listen(config.server.port, function (err) {
   if (!err) {

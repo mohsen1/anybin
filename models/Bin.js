@@ -63,6 +63,13 @@ BinSchema.statics = {
     bin.save(function (err){
       cb(err, bin.toObjectWithSecret());
     });
+  },
+
+  findById: function (id, cb) {
+    this.findOne({_id: id}, function (err, bin) {
+      if (err) { cb(err); }
+      cb(err, bin.toObject());
+    });
   }
 };
 
