@@ -1,4 +1,5 @@
 # HalfBin
+![](https://api.travis-ci.org/mohsen1/halfbin.svg)
 Backend API of a bin website.
 
 **Work in progress**
