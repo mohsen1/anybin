@@ -45,6 +45,13 @@ BinSchema.methods = {
     if (this.versions){
       return this.versions[this.versions.length - 1];
     }
+  },
+
+  toObjectWithSecret: function () {
+    var obj = this.toObject();
+    obj.secret = this.secret;
+
+    return obj;
   }
 }
 
@@ -54,7 +61,7 @@ BinSchema.statics = {
     var bin = new this();
     bin.addVersion(body);
     bin.save(function (err){
-      cb(err, bin.toObject());
+      cb(err, bin.toObjectWithSecret());
     });
   }
 };
@@ -62,6 +69,7 @@ BinSchema.statics = {
 if (!BinSchema.options.toObject) BinSchema.options.toObject = {};
 BinSchema.options.toObject.transform = function (doc, ret, options) {
   delete ret.__v;
+  delete ret.secret;
   if (ret.versions && ret.versions.length) {
     ret.versions.forEach(function (ver) {
       delete ver._id;
