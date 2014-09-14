@@ -9,6 +9,7 @@
   "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.8.1",
     "express": "^4.8.7",
     "mongoose": "^3.8.15",
     "shortid": "^2.0.1"

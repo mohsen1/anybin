@@ -2,8 +2,11 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+require('./models/Bin');
 var app = express();
-var Bin = require('./models/Bin');
+var Bin = mongoose.model('Bin');
 var environment = process.env.NODE_ENV || 'development';
 var config = require('./config')[environment];
 
@@ -16,15 +19,19 @@ mongoose.connection.on('error', function (err) {
   console.error(err);
 });
 
+app.use(morgan('combined'));
+app.use(bodyParser.text());
+
 app.get('/', function (req, res, next) {
   res.send('Welcome to HalfBin!\nTry POSTing to this URL.');
   next();
 });
 
 app.post('/', function (req, res, next) {
-  var bin = new Bin();
-  bin.save();
-  res.send(bin);
+  Bin.create(req.body, function (err, bin){
+    if (!err) { res.send(bin); }
+    next();
+  });
 });
 
 
