@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./scripts/test.sh",
-    "server": "node app/server",
-    "dev": "node-inspector && nodemon --debug app/server"
+    "start": "node app/server"
   },
   "author": "Mohsen Azimi <mohsen@mohsenweb.com>",
   "license": "MIT",
