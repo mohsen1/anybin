@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var Bin = mongoose.model('Bin');
+var WRITE_SECRET = 'write-secret';
 
 // Make a new Bin
 exports.create = function (req, res, next) {
   Bin.create(req.body, function (err, result){
     if (!err) {
-      res.cookie('write-secret', result.getSecret(), {
+      res.cookie(WRITE_SECRET, result.getSecret(), {
         maxAge: 900000, httpOnly: true
       });
       res.send(result.toBin());
@@ -30,7 +31,7 @@ exports.update = function (req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     if (!err) {
       // If they have the cookie
-      if (req.cookies['write-secret'] === result.getSecret()) {
+      if (req.cookies.WRITE_SECRET === result.getSecret()) {
         result.updateLastVersion(req.body, function (err){
           if (!err) {
             res.send(result.toBin());
