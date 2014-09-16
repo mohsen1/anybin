@@ -18,7 +18,6 @@ exports.create = function (req, res, next) {
 exports.latest = function (req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     if (!err) {
-      result.versions = result.versions.splice(-1);
       res.send(result.toBin());
     }
     next();
