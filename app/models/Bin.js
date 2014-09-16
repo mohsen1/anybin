@@ -41,17 +41,35 @@ BinSchema.methods = {
     this.save(cb);
   },
 
+  updateLastVersion: function(body, cb) {
+    this.versions[this.versions.length - 1].body = body;
+    this.save(cb);
+  },
+
   getLatest: function(){
     if (this.versions){
       return this.versions[this.versions.length - 1];
     }
   },
 
-  toObjectWithSecret: function () {
-    var obj = this.toObject();
-    obj.secret = this.secret;
+  getSecret: function(){
+    return this.secret;
+  },
 
-    return obj;
+  toBin: function (versionNumber) {
+    var bin = {};
+    var obj = this.toObject();
+    versionNumber = obj.versions.length - 1;
+    var version = obj.versions[versionNumber];
+
+    bin.id = obj._id;
+    if (version) {
+      bin.version = version.version;
+      bin.body = version.body;
+      bin.created_at = version.created_at;
+    }
+
+    return bin;
   }
 }
 
@@ -61,14 +79,14 @@ BinSchema.statics = {
     var bin = new this();
     bin.addVersion(body);
     bin.save(function (err){
-      cb(err, bin.toObjectWithSecret());
+      cb(err, bin);
     });
   },
 
   findById: function (id, cb) {
     this.findOne({_id: id}, function (err, bin) {
       if (err) { return cb(err); }
-      cb(err, bin.toObject());
+      cb(err, bin);
     });
   }
 };

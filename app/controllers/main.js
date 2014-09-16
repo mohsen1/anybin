@@ -3,8 +3,13 @@ var Bin = mongoose.model('Bin');
 
 // Make a new Bin
 exports.create = function (req, res, next) {
-  Bin.create(req.body, function (err, bin){
-    if (!err) { res.send(bin); }
+  Bin.create(req.body, function (err, result){
+    if (!err) {
+      res.cookie('write-secret', result.getSecret(), {
+        maxAge: 900000, httpOnly: true
+      });
+      res.send(result.toBin());
+    }
     next();
   });
 };
@@ -20,17 +25,21 @@ exports.latest = function (req, res, next) {
   });
 };
 
-// Update latest version
+// Update latest version of a bin
 exports.update = function (req, res, next) {
-  Bin.findById(req.params.id, function (err, bin) {
+  Bin.findById(req.params.id, function (err, result) {
     if (!err) {
-      bin.versions.pop();
-      bin.addVersion(req.body, function (err){
-        if (!err) {
-          res.send(bin);
-        }
-        next();
-      });
+      // If they have the cookie
+      if (true) {
+        result.updateLastVersion(req.body, function (err){
+          if (!err) {
+            res.send(result.toBin());
+          }
+          next();
+        });
+      } else {
+        res.send(400);
+      }
     }
   });
 };
