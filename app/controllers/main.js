@@ -16,10 +16,10 @@ exports.create = function (req, res, next) {
 
 // Get latest version
 exports.latest = function (req, res, next) {
-  Bin.findById(req.params.id, function (err, bin) {
+  Bin.findById(req.params.id, function (err, result) {
     if (!err) {
-      bin.versions = bin.versions.splice(-1);
-      res.send(bin);
+      result.versions = result.versions.splice(-1);
+      res.send(result.toBin());
     }
     next();
   });
