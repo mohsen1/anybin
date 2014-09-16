@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
@@ -20,6 +21,8 @@ mongoose.connection.on('error', function (err) {
   console.error(err);
 });
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 app.use(morgan('combined'));
 app.use(bodyParser.text());
 app.use(cookieParser());

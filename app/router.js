@@ -1,5 +1,5 @@
 var api = require('./controllers/api');
-var api = require('./controllers/main');
+var main = require('./controllers/main');
 
 module.exports = function (app) {
 
