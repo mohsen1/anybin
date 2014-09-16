@@ -59,8 +59,8 @@ BinSchema.methods = {
   toBin: function (versionNumber) {
     var bin = {};
     var obj = this.toObject();
-    versionNumber = obj.versions.length - 1;
-    var version = obj.versions[versionNumber];
+    versionNumber = versionNumber || obj.versions.length;
+    var version = obj.versions[versionNumber - 1];
 
     bin.id = obj._id;
     if (version) {
