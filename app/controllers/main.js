@@ -1,12 +1,11 @@
 var mongoose = require('mongoose');
 var Bin = mongoose.model('Bin');
-var WRITE_SECRET = 'write-secret';
 
 // Make a new Bin
 exports.create = function (req, res, next) {
   Bin.create(req.body, function (err, result){
     if (!err) {
-      res.cookie(WRITE_SECRET, result.getSecret(), {
+      res.cookie(result.getSecret(), true, {
         maxAge: 900000, httpOnly: true
       });
       res.send(result.toBin());
@@ -31,7 +30,7 @@ exports.updateLastVersion = function (req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     if (!err) {
       // If they have the cookie
-      if (req.cookies.WRITE_SECRET === result.getSecret()) {
+      if (req.cookies[result.getSecret()]) {
         result.updateLastVersion(req.body, function (err){
           if (!err) {
             res.send(result.toBin());
@@ -47,14 +46,24 @@ exports.updateLastVersion = function (req, res, next) {
 
 // Add a new version
 exports.addVersion = function (req, res, next) {
-  Bin.findById(req.params.id, function (err, bin) {
-    if (!err) {
-      bin.addVersion(req.body, function (err){
-        if (!err) {
-          res.send(bin.toBin());
-        }
-        next();
-      });
+  Bin.findById(req.params.id, function (err, result) {
+    if (!err && result) {
+
+      // If they have the secret cookie, create a new version on top
+      if (req.cookies[result.getSecret()]) {
+        result.addVersion(req.body, function (err){
+          if (!err) {
+            res.send(result.toBin());
+          }
+          next();
+        });
+
+      // if they don't have the secret cookie, make a new bin
+      } else {
+        exports.create(req, res, next);
+      }
+    } else {
+      res.status(500, err).end();
     }
   });
 };
@@ -71,4 +80,3 @@ exports.getVersion = function (req, res, next) {
     next();
   });
 };
-
