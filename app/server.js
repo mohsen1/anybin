@@ -4,6 +4,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 require('./models/Bin');
 var router = require('./router');
 var app = express();
@@ -21,6 +22,7 @@ mongoose.connection.on('error', function (err) {
 
 app.use(morgan('combined'));
 app.use(bodyParser.text());
+app.use(cookieParser());
 router(app);
 
 app.listen(config.server.port, function (err) {

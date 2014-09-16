@@ -30,7 +30,7 @@ exports.update = function (req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     if (!err) {
       // If they have the cookie
-      if (true) {
+      if (req.cookies['write-secret'] === result.getSecret()) {
         result.updateLastVersion(req.body, function (err){
           if (!err) {
             res.send(result.toBin());
@@ -38,7 +38,7 @@ exports.update = function (req, res, next) {
           next();
         });
       } else {
-        res.send(400);
+        res.status(403).end();
       }
     }
   });
