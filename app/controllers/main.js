@@ -1,12 +1,6 @@
 var mongoose = require('mongoose');
 var Bin = mongoose.model('Bin');
 
-exports.index = function (req, res, next) {
-  // TODO. send list of bins with pagination
-  res.send('TODO');
-  next();
-};
-
 // Make a new Bin
 exports.create = function (req, res, next) {
   Bin.create(req.body, function (err, bin){

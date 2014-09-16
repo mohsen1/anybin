@@ -21,7 +21,6 @@ npm run dev
 
 |Operation|Path         |Description                     |
 |---------|-------------|--------------------------------|
-|GET      |/            |List all bins                   |
 |POST     |/            |Make a new Bin                  |
 |GET      |/:id         |Get latest version of a bin     |
 |PUT      |/:id         |Update latest version of a bin  |
