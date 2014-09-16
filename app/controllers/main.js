@@ -70,12 +70,9 @@ exports.addVersion = function (req, res, next) {
 
 // Get a specific version of a bin
 exports.getVersion = function (req, res, next) {
-  Bin.findById(req.params.id, function (err, bin) {
+  Bin.findById(req.params.id, function (err, result) {
     if (!err) {
-      bin.versions = bin.versions.filter(function (ver) {
-        return ver.version === req.params.version;
-      });
-      res.send(bin);
+      res.send(result.toBin(+req.params.version));
     }
     next();
   });
