@@ -27,7 +27,7 @@ exports.latest = function (req, res, next) {
 };
 
 // Update latest version of a bin
-exports.update = function (req, res, next) {
+exports.updateLastVersion = function (req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     if (!err) {
       // If they have the cookie
@@ -46,12 +46,12 @@ exports.update = function (req, res, next) {
 };
 
 // Add a new version
-exports.updateVersion = function (req, res, next) {
+exports.addVersion = function (req, res, next) {
   Bin.findById(req.params.id, function (err, bin) {
     if (!err) {
       bin.addVersion(req.body, function (err){
         if (!err) {
-          res.send(bin);
+          res.send(bin.toBin());
         }
         next();
       });
