@@ -5,6 +5,7 @@ $(function (argument) {
 
   $textarea.on('keyup', _.throttle(putChanges, 200));
   $save.on('click', save);
+  window.onpopstate = onpopstate;
 
   function putChanges(event) {
     var value = $textarea.val();
@@ -14,7 +15,7 @@ $(function (argument) {
       $.post('/api', value)
         .then(function (resp) {
           if (resp && resp.id) {
-            var state = resp.version = resp.id + '/1';
+            var state = resp.id + '/1';
 
             currentId = resp.id;
             history.pushState(null, state, state);
@@ -53,5 +54,13 @@ $(function (argument) {
       return location.pathname.substring(1,10)
     }
     return null;
+  }
+
+  function onpopstate(event) {
+    $.get('/api' + location.pathname).then(function (resp) {
+      if (resp && resp.body) {
+        $textarea.val(resp.body);
+      }
+    });
   }
 });
