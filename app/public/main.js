@@ -2,6 +2,7 @@ $(function (argument) {
   var $textarea = $('#t');
   var $save = $('#s');
   var currentId = getId();
+  var makeInProgress = false;
 
   $textarea.on('keyup', _.throttle(putChanges, 200));
   $save.on('click', save);
@@ -11,9 +12,11 @@ $(function (argument) {
     var value = $textarea.val();
 
     // Initial POST
-    if (location.pathname === '/'){
+    if (location.pathname === '/' && !makeInProgress){
+      makeInProgress = true;
       $.post('/api', value)
         .then(function (resp) {
+          makeInProgress = false;
           if (resp && resp.id) {
             var state = resp.id + '/1';
 
