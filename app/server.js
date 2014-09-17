@@ -29,9 +29,10 @@ app.use(bodyParser.text());
 app.use(cookieParser());
 router(app);
 
-app.listen(config.server.port, function (err) {
+var port = process.env.PORT || config.server.port;
+app.listen(port, function (err) {
   if (!err) {
-    return console.log('Server listening to ', config.server.port);
+    return console.log('Server listening to ', port);
   }
   console.error('Error launching server');
   console.error(err);
