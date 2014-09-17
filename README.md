@@ -6,6 +6,8 @@
 
 A boilerplate bin website for saving text in a database and access it with a short URL. Very similar to PasteBin or JSBin. This is mostly back-end implementation of the website. Front-end is very simple.
 
+Try a version of the app running [here](http://anybin.herokuapp.com/)
+
 **Work in progress**
 
 ## Running locally
