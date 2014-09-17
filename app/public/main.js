@@ -24,10 +24,10 @@ $(function (argument) {
       .then(function (resp) {
         makeInProgress = false;
         if (resp && resp.id) {
-          var state = resp.id + '/1';
+          var state = '/' + resp.id + '/1';
 
           currentId = resp.id;
-          history.pushState(null, state, state);
+          history.pushState(resp, state, state);
           log('New bin created.');
         }
       });
@@ -38,7 +38,10 @@ $(function (argument) {
         method: 'put',
         contentType: 'text/plain'
       }).then(function (resp) {
-        history.pushState(null, resp.version, resp.version);
+        var url = '/' + resp.id + '/' + resp.version;
+
+        currentId = resp.id;
+        history.replaceState(resp, url, url);
         log('Update successful!');
       });
     }
@@ -69,12 +72,11 @@ $(function (argument) {
     return null;
   }
 
-  function onpopstate(event) {
-    $.get('/api' + location.pathname).then(function (resp) {
-      if (resp && resp.body) {
-        $textarea.val(resp.body);
-      }
-    });
+  function onpopstate(resp) {
+    if (resp && resp.body) {
+      currentId = resp.id;
+      $textarea.val(resp.body);
+    }
   }
 
   function log(str) {
