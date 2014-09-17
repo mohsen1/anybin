@@ -14,25 +14,30 @@ $(function (argument) {
     // Initial POST
     if (location.pathname === '/' && !makeInProgress){
       makeInProgress = true;
-      $.post('/api', value)
-        .then(function (resp) {
-          makeInProgress = false;
-          if (resp && resp.id) {
-            var state = resp.id + '/1';
+      $.ajax({
+        url: '/api',
+        data: value,
+        method: 'post',
+        contentType: 'text/plain'
+      })
+      .then(function (resp) {
+        makeInProgress = false;
+        if (resp && resp.id) {
+          var state = resp.id + '/1';
 
-            currentId = resp.id;
-            history.pushState(null, state, state);
-          }
-        });
+          currentId = resp.id;
+          history.pushState(null, state, state);
+        }
+      });
     } else {
       $.ajax({
-          url: '/api/' + currentId,
-          data: value,
-          method: 'put',
-          contentType: 'text/plain'
-        }).then(function (resp) {
-          console.log('Update successful!');
-        });
+        url: '/api/' + currentId,
+        data: value,
+        method: 'put',
+        contentType: 'text/plain'
+      }).then(function (resp) {
+        console.log('Update successful!');
+      });
     }
   }
 
@@ -43,12 +48,16 @@ $(function (argument) {
     // events on textarea should make a new bin first in order
     // to make save work.
     if (location.pathname !== '/'){
-      $.post('/api/' + currentId, value)
-        .then(function (resp) {
-          if (resp && resp.version) {
-            history.pushState(null, resp.version, resp.version);
-          }
-        })
+      $.ajax({
+        url: '/api/' + currentId,
+        data: value,
+        method: 'post',
+        contentType: 'text/plain'
+      }).then(function (resp) {
+        if (resp && resp.version) {
+          history.pushState(null, resp.version, resp.version);
+        }
+      });
     }
   }
 
