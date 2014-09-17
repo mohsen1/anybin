@@ -10,8 +10,9 @@ exports.new = function(req, res, next) {
 exports.show = function(req, res, next) {
   Bin.findById(req.params.id, function (err, result) {
     var body = '';
+    var version = parseInt(req.params.version, 10);
     if (!err && result) {
-      res.render('bin.ejs', {body: result.toBin().body});
+      res.render('bin.ejs', {body: result.toBin(version).body});
     } else {
       res.status(404).end();
     }
