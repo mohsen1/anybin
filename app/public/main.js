@@ -7,6 +7,7 @@ $(function (argument) {
   $textarea.on('keyup', _.throttle(putChanges, 200));
   $save.on('click', save);
   window.onpopstate = onpopstate;
+  $.ajaxPrefilter(function () { log('Working...'); });
 
   function putChanges(event) {
     var value = $textarea.val();
@@ -37,7 +38,7 @@ $(function (argument) {
         contentType: 'text/plain'
       }).then(function (resp) {
         history.pushState(null, resp.version, resp.version);
-        console.log('Update successful!');
+        log('Update successful!');
       });
     }
   }
@@ -55,7 +56,7 @@ $(function (argument) {
         method: 'post',
         contentType: 'text/plain'
       }).then(function (resp) {
-        console.log('Save successful!');
+        log('Save successful!');
       });
     }
   }
@@ -73,5 +74,9 @@ $(function (argument) {
         $textarea.val(resp.body);
       }
     });
+  }
+
+  function log(str) {
+    $('.log').text(str);
   }
 });
