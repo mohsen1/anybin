@@ -1,9 +1,16 @@
 var mongoose = require('mongoose');
+var request = require('request');
 var Bin = mongoose.model('Bin');
 
 // Render empty editor
 exports.new = function(req, res, next) {
-  res.render('bin.ejs', {body: ''});
+  if (req.query.import) {
+    request.get(req.query.import, function (err, resp) {
+      res.render('bin.ejs', {body: resp.body});
+    });
+  } else {
+    res.render('bin.ejs', {body: ''});
+  }
 };
 
 // Render editor with a bin
