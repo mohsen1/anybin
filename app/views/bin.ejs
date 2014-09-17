@@ -19,6 +19,7 @@
         padding-top: 70px;
         outline: none;
         border: none;
+        resize: none;
         box-sizing: border-box;
       }
       .buttons {
@@ -36,7 +37,7 @@
     </style>
   </head>
   <body>
-    <textarea id="t"><%- body %></textarea>
+    <textarea id="t" autofocus><%- body %></textarea>
     <div class="buttons">
       <button onclick="location.href = '/'">New</button>
       <button id="s">Save milestone</button>
