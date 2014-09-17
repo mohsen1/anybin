@@ -19,11 +19,17 @@ npm run dev
 
 ### Routes
 
+#### Website
+
 |Operation|Path              |Description                     |
 |---------|------------------|--------------------------------|
 |GET      |/                 |Load homepage                   |
 |GET      |/:id              |Load a bin                      |
 |GET      |/:id/:version     |Load a bin at a version         |
+
+#### API
+
+|Operation|Path              |Description                     |
 |---------|------------------|--------------------------------|
 |POST     |/api/             |Make a new Bin                  |
 |GET      |/api/:id          |Get latest version of a bin     |
