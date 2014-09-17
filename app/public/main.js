@@ -28,6 +28,7 @@ $(function (argument) {
 
           currentId = resp.id;
           history.pushState(null, state, state);
+          log('New bin created.');
         }
       });
     } else {
