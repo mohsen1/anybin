@@ -2,7 +2,7 @@ $(function (argument) {
   var $textarea = $('#t');
   var $save = $('#s');
 
-  $textarea.on('keyup', putChanges);
+  $textarea.on('keyup', _.throttle(putChanges, 200));
 
   function putChanges(event) {
     var value = $textarea.val();
