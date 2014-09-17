@@ -36,6 +36,7 @@ $(function (argument) {
         method: 'put',
         contentType: 'text/plain'
       }).then(function (resp) {
+        history.pushState(null, resp.version, resp.version);
         console.log('Update successful!');
       });
     }
