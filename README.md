@@ -10,6 +10,13 @@ Try a version of the app running [here](http://anybin.herokuapp.com/)
 
 **Work in progress**
 
+## Features
+
+* Automatically saves document changes in the database
+* Automatically makes a new version each time user saves a bin
+* Import from another page on the web with `?import` query parameter. Example: http://anybin.herokuapp.com/?import=https://raw.githubusercontent.com/mohsen1/anybin/master/README.md
+* Client side cache of recently made versions
+
 ## Running locally
 
 ```
