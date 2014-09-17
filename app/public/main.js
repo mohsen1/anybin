@@ -55,9 +55,7 @@ $(function (argument) {
         method: 'post',
         contentType: 'text/plain'
       }).then(function (resp) {
-        if (resp && resp.version) {
-          history.pushState(null, resp.version, resp.version);
-        }
+        console.log('Save successful!');
       });
     }
   }
