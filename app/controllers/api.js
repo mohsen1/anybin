@@ -1,17 +1,31 @@
 var mongoose = require('mongoose');
+var request = require('request');
 var Bin = mongoose.model('Bin');
 
 // Make a new Bin
 exports.create = function (req, res, next) {
-  Bin.create(req.body, function (err, result){
+  if (req.query.import) {
+    request.get(req.query.import, function (err, resp) {
+      if (err) {
+        res.status(500, err).end();
+      } else {
+        Bin.create(resp.body, createCb);
+      }
+    });
+  } else {
+    Bin.create(req.body, createCb);
+  }
+  function createCb(err, result){
     if (!err) {
       res.cookie(result.getSecret(), true, {
         maxAge: 900000, httpOnly: true
       });
       res.send(result.toBin());
+    } else {
+      res.status(500, err).end();
     }
     next();
-  });
+  }
 };
 
 // Get latest version

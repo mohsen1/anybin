@@ -23,17 +23,19 @@ npm run dev
 
 #### Website
 
-|Operation|Path              |Description                     |
-|---------|------------------|--------------------------------|
-|GET      |/                 |Load homepage                   |
-|GET      |/:id              |Load a bin                      |
-|GET      |/:id/:version     |Load a bin at a version         |
+|Operation|Path              |Description                      |
+|---------|------------------|---------------------------------|
+|GET      |/                 |Load homepage                    |
+|GET      |/?import=url      |Load homepage and import from url|
+|GET      |/:id              |Load a bin                       |
+|GET      |/:id/:version     |Load a bin at a version          |
 
 #### API
 
 |Operation|Path              |Description                     |
 |---------|------------------|--------------------------------|
 |POST     |/api/             |Make a new Bin                  |
+|POST     |/api?import=url   |Make a new Bin form url         |
 |GET      |/api/:id          |Get latest version of a bin     |
 |PUT      |/api/:id          |Update latest version of a bin  |
 |POST     |/api/:id          |Add a new version to a bin      |
