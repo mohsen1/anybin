@@ -1,1 +1,1 @@
-web: ENV=production node app/server.js
+web: ENV=production  ./node_modules/forever/bin/forever app/server.js
