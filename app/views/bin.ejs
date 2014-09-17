@@ -4,16 +4,27 @@
     <meta charset="utf-8">
     <title></title>
     <style>
-      body {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      body > textarea {
+      textarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-family: monospace;
+        font-size: 1.2em;
         width: 100%;
-        min-height: 400px;
+        -webkit-appearance: none;
+        margin: 0;
+        padding: 15px;
+        padding-top: 70px;
+        outline: none;
+        border: none;
+        box-sizing: border-box;
       }
-      body > div {
-        text-align: center;;
+      .buttons {
+        position: absolute;
+        top: 0;
+        width: 100%;
       }
       button {
         background: green;
@@ -26,11 +37,11 @@
   </head>
   <body>
     <textarea id="t"><%- body %></textarea>
-    <div>
+    <div class="buttons">
       <button onclick="location.href = '/'">New</button>
-      <button id="s">Save</button>
+      <button id="s">Save milestone</button>
+      <span class="log"></span>
     </div>
-    <div class="log"></div>
     <script src="/public/jquery.js"></script>
     <script src="/public/underscore.js"></script>
     <script src="/public/main.js"></script>
