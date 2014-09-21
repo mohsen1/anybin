@@ -1,11 +1,11 @@
 'use strict';
 
-console.log('Please update config.js with your configurations');
+var argv = require('minimist')(process.argv.slice(2));
 
 module.exports = {
   development: {
     db: {
-      url: ''
+      url: argv.db || '<YOUR DB URL HERE>'
     },
     server: {
       port: 3000
@@ -13,7 +13,7 @@ module.exports = {
   },
   test: {
     db: {
-      url: ''
+      url: argv.db || '<YOUR DB URL HERE>'
     },
     server: {
       port: 3000
@@ -21,7 +21,7 @@ module.exports = {
   },
   production: {
     db: {
-      url: ''
+      url: argv.db || '<YOUR DB URL HERE>'
     },
     server: {
       port: 80

@@ -31,6 +31,7 @@ npm run dev
 * `config` for selecting the configuration file
 * `views` for selecting the folder to look for `index.ejs` file
 * `public` for selecting public content folder
+* `db` MongoDB URL, it will override database URLs in `config.js`
 
 ##### Example
 
@@ -38,7 +39,8 @@ npm run dev
 $ node app/server.js \
   --config='/path/to/my/config.js' \
   --views='/path/to/my/views-folder/' \
-  --public='/path/to/my/public-folder'
+  --public='/path/to/my/public-folder' \
+  --db='mongodb://user:pass@me.dbhost.com:9999/my-db'
 ```
 
 ### Routes
