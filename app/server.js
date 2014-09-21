@@ -24,7 +24,7 @@ mongoose.connection.on('error', function (err) {
 });
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', argv.views || path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(morgan('combined'));
 app.use(bodyParser.text());

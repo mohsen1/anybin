@@ -6,10 +6,10 @@ var Bin = mongoose.model('Bin');
 exports.new = function(req, res, next) {
   if (req.query.import) {
     request.get(req.query.import, function (err, resp) {
-      res.render('bin.ejs', {body: resp.body});
+      res.render('index.ejs', {body: resp.body});
     });
   } else {
-    res.render('bin.ejs', {body: ''});
+    res.render('index.ejs', {body: ''});
   }
 };
 
@@ -19,7 +19,7 @@ exports.show = function(req, res, next) {
     var body = '';
     var version = parseInt(req.params.version, 10);
     if (!err && result) {
-      res.render('bin.ejs', {body: result.toBin(version).body});
+      res.render('index.ejs', {body: result.toBin(version).body});
     } else {
       res.status(404).end();
     }
