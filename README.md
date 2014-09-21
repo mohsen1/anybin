@@ -30,11 +30,15 @@ npm run dev
 
 * `config` for selecting the configuration file
 * `views` for selecting the folder to look for `index.ejs` file
+* `public` for selecting public content folder
 
 ##### Example
 
 ```shell
-$ node app/server.js --config='/path/to/my/config.js' --views='/path/to/my/views-folder/'
+$ node app/server.js \
+  --config='/path/to/my/config.js' \
+  --views='/path/to/my/views-folder/' \
+  --public='/path/to/my/public-folder'
 ```
 
 ### Routes
