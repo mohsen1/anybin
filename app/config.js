@@ -1,9 +1,11 @@
 'use strict';
 
+console.log('Please update config.js with your configurations');
+
 module.exports = {
   development: {
     db: {
-      url: 'mongodb://admin:admin@ds035750.mongolab.com:35750/bins-dev'
+      url: ''
     },
     server: {
       port: 3000
@@ -11,7 +13,7 @@ module.exports = {
   },
   test: {
     db: {
-      url: 'mongodb://admin:admin@ds035750.mongolab.com:35750/bins-test'
+      url: ''
     },
     server: {
       port: 3000
@@ -19,7 +21,7 @@ module.exports = {
   },
   production: {
     db: {
-      url: 'mongodb://admin:admin@ds035300.mongolab.com:35300/bins'
+      url: ''
     },
     server: {
       port: 80

@@ -5,12 +5,14 @@ var express = require('express');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var argv = require('minimist')(process.argv.slice(2));
 var cookieParser = require('cookie-parser')
 require('./models/Bin');
 var router = require('./router');
 var app = express();
 var environment = process.env.NODE_ENV || 'development';
-var config = require('./config')[environment];
+var configFile = argv.config || './config';
+var config = require(configFile)[environment];
 
 
 // Connect DB
