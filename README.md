@@ -26,6 +26,17 @@ npm install
 npm run dev
 ```
 
+### Server command line options
+
+* `config` for selecting the configuration file
+* `views` for selecting the folder to look for `index.ejs` file
+
+##### Example
+
+```shell
+$ node app/server.js --config='/path/to/my/config.js' --views='/path/to/my/views-folder/'
+```
+
 ### Routes
 
 #### Website
