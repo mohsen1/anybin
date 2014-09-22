@@ -45,7 +45,7 @@ $ node app/server.js \
 
 ### Routes
 
-#### Website
+##### Website
 
 |Operation|Path              |Description                      |
 |---------|------------------|---------------------------------|
@@ -54,7 +54,7 @@ $ node app/server.js \
 |GET      |/:id              |Load a bin                       |
 |GET      |/:id/:version     |Load a bin at a version          |
 
-#### API
+##### API
 
 |Operation|Path              |Description                     |
 |---------|------------------|--------------------------------|
