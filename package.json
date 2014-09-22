@@ -1,8 +1,10 @@
 {
-  "name": "halfbin",
-  "version": "0.0.0",
+  "name": "anybin",
+  "version": "0.0.1",
   "description": "Half(backend) of a bin website",
+  "repository": "git@github.com:mohsen1/anybin.git",
   "main": "index.js",
+  "readme": "README.md",
   "scripts": {
     "test": "./scripts/test.sh",
     "start": "node app/server"
